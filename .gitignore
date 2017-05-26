@@ -9,13 +9,6 @@ logs/
 */bin/
 .DS_Store
 
-kfs-hot-line-web/src/main/webapp/static/json/
-kfs-hot-line-web/src/main/webapp/static/fe/
-kfs-hot-line-web/.settings/*
-
-kfs-hot-line-web/bin/*
-kfs-hot-line-service/bin/*
-
 FE/
 MANIFEST.MF
 .externalToolBuilders/

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Dintama on 2017/5/25.
  */
@@ -14,6 +16,11 @@ public class LoginController {
     @ResponseBody
     public String checkHealth(){
         return "ok";
+    }
+
+    @RequestMapping(value = "/login")
+    public String login(HttpServletRequest request){
+        return "login";
     }
 
 }
