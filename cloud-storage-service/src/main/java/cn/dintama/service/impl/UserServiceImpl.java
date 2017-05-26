@@ -20,4 +20,16 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String email) {
         return userDao.selectUserByEmail(email);
     }
+
+    @Override
+    public Boolean validateLogin(User user) {
+        User u = userDao.selectUserByEmail(user.getEmail());
+        if(u == null){
+            return false;
+        }
+        if(u.getPassword().equals(user.getPassword())){
+            return true;
+        }
+        return false;
+    }
 }

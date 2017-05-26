@@ -25,4 +25,10 @@ public class UserTest extends SpringTestHelper {
         System.out.println(userByEmail.toString());
     }
 
+    @Test
+    public void testValidateLogin(){
+        Boolean aBoolean = userService.validateLogin("dingy6680@qq.com", "123456");
+        System.out.println(aBoolean);
+    }
+
 }

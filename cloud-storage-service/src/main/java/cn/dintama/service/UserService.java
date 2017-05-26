@@ -9,4 +9,6 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
+    Boolean validateLogin(User user);
+
 }
