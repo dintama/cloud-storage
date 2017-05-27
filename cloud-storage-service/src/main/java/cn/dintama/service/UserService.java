@@ -11,4 +11,5 @@ public interface UserService {
 
     Boolean validateLogin(User user);
 
+    Boolean validateSignUp(User user);
 }

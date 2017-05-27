@@ -32,4 +32,13 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    public Boolean validateSignUp(User user) {
+        User u = userDao.selectUserByEmail(user.getEmail());
+        if(u == null){
+            return true;
+        }
+        return false;
+    }
 }

@@ -6,5 +6,9 @@
         select * from `user` where email = #{email}
     </select>
 
+    <insert id="insertUser" parameterType="cn.dintama.entity.User">
+        insert into `user`(nickname, email, password) values (#{nickname}, #{email}, #{password})
+    </insert>
+
 
 </mapper>

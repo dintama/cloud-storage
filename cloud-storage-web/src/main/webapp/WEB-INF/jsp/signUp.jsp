@@ -20,6 +20,7 @@
   <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
   <%@ include file="include/includes.jsp"%>
+  <script src="/js/login/login.js"></script>
 
 </head>
 <body class="style-3">
@@ -54,7 +55,7 @@
           <p>已经注册？ <a href="/login">登陆</a></p>
         </div>
         <div class="form-group">
-          <input type="submit" value="注册" class="btn btn-primary">
+          <input type="submit" value="注册" class="btn btn-primary" onclick="login.signUp()">
         </div>
       </form>
       <!-- END Sign In Form -->

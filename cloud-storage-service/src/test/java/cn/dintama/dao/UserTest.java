@@ -27,7 +27,7 @@ public class UserTest extends SpringTestHelper {
 
     @Test
     public void testValidateLogin(){
-        Boolean aBoolean = userService.validateLogin("dingy6680@qq.com", "123456");
+        Boolean aBoolean = userService.validateLogin(null);
         System.out.println(aBoolean);
     }
 

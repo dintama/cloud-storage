@@ -1,6 +1,7 @@
 package cn.dintama.controller;
 
 
+import cn.dintama.dao.UserDao;
 import cn.dintama.entity.User;
 import cn.dintama.service.UserService;
 import com.alibaba.fastjson.JSON;
@@ -23,6 +24,9 @@ public class LoginController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private UserDao userDao;
 
     @RequestMapping(value = "/checkHealth")
     @ResponseBody
@@ -49,6 +53,19 @@ public class LoginController {
             request.setAttribute("user", userByEmail);
         }
         return result.toString();
+    }
+
+    @RequestMapping(value = "/validate/signUp", method = RequestMethod.POST)
+    @ResponseBody
+    public String validateSignUp(HttpServletRequest request, User user){
+        return userService.validateSignUp(user).toString();
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public String register(HttpServletRequest request, User user){
+        userDao.insertUser(user);
+        return "success";
     }
 
 }
