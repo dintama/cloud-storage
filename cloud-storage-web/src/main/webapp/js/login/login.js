@@ -98,6 +98,10 @@ var login = function () {
                 success: function (res) {
                     $.msgUtil.successMsg("注册成功！", "");
                     window.location.href = "/login";
+                },
+                error: function(res){
+                    $.msgUtil.errorMsg("注册失败!", "");
+
                 }
             });
 
