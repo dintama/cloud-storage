@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String requestURI = httpServletRequest.getRequestURI();
+        /*String requestURI = httpServletRequest.getRequestURI();
         Pattern compileHF = Pattern.compile(urlHF);
         if(compileHF.matcher(requestURI).matches()){
             return true;
@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(user == null){
             httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(httpServletRequest, httpServletResponse);
             return false;
-        }
+        }*/
         return true;
     }
 
