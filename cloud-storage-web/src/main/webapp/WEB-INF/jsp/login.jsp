@@ -12,7 +12,7 @@
   <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 
   <%@ include file="include/includes.jsp"%>
-  <script src="/js/login/login.js"></script>
+  <script src="/static/js/login/login.js"></script>
   
 </head>
 <body class="style-3">

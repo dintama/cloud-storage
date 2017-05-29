@@ -8,14 +8,15 @@ var login = function () {
 
             $.ajax({
                 url: "validate/login",
-                dataType: "json",
+                dataType: "text",
                 data: {
                     email: email,
                     password: password
                 },
+                async:false,
                 type: "POST",
                 success: function (res) {
-                    if (res === true) {
+                    if (res === "true") {
                         $.msgUtil.successMsg("登陆成功！", "");
                         window.location.href = "/index";
                     } else {

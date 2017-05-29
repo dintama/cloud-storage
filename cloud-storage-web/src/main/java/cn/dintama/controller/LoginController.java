@@ -50,7 +50,7 @@ public class LoginController {
         Boolean result = userService.validateLogin(user);
         if(result){
             User userByEmail = userService.getUserByEmail(user.getEmail());
-            request.setAttribute("user", userByEmail);
+            request.getSession().setAttribute("user", userByEmail);
         }
         return result.toString();
     }
@@ -66,6 +66,12 @@ public class LoginController {
     public String register(HttpServletRequest request, User user){
         userDao.insertUser(user);
         return "success";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "login";
     }
 
 }
