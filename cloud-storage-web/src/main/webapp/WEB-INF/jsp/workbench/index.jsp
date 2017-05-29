@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width">
     <%@ include file="../include/includes.jsp" %>
     <script src="/static/js/login/login.js"></script>
+    <script src="/static/js/workbench/file.js"></script>
 </head>
 <body>
 <div class="navbar navbar-inverse" role="navigation" style="margin-bottom: 0px;">
@@ -50,8 +51,8 @@
             </ol>
 
             <div class="row col-md-12">
-                <button type="button" class="btn btn-info"><i class="fa fa-upload"></i>&nbsp;上传文件</button>
-                <button type="button" class="btn btn-default"><i class="fa fa-folder-o"></i>&nbsp;新建文件夹</button>
+                <button type="button" id="uploadFile" class="btn btn-info"><i class="fa fa-upload"></i>&nbsp;上传文件</button>
+                <button type="button" id="createDir" class="btn btn-default"><i class="fa fa-folder-o"></i>&nbsp;新建文件夹</button>
             </div>
 
 
@@ -79,17 +80,17 @@
 </div>
 
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="fileUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+                <h4 class="modal-title" id="myModalLabel">上传文件</h4>
             </div>
             <div class="modal-body">在这里添加一些文本</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">提交更改</button>
+                <button type="button" class="btn btn-info">确认上传</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -98,3 +99,9 @@
 
 </body>
 </html>
+
+<script>
+    $(function () {
+       file.init();
+    });
+</script>
