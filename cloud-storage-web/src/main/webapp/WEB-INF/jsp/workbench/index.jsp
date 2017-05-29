@@ -10,6 +10,9 @@
     <script src="/static/js/workbench/file.js"></script>
 </head>
 <body>
+
+<div id="alertBox" class="text-center" style="position: absolute; z-index: 5555; right:20px; top:20px;"></div>
+
 <div class="navbar navbar-inverse" role="navigation" style="margin-bottom: 0px;">
     <div class="navbar-header">
         <div class="logo"><h1>Cloud Storage</h1></div>
@@ -81,16 +84,18 @@
 
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="fileUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width:900px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">上传文件</h4>
             </div>
-            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-body">
+                <div id="fileUploadContent" class="fileUploadContent"></div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-info">确认上传</button>
+                <button id="confirmUpload" type="button" class="btn btn-info" >确认上传</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->

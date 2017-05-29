@@ -26,6 +26,18 @@
                     var id = "#errorAlert" + tmp;
                     $(id).alert("close");
                 }, 2000)
+            },
+            infoMsg: function(info, msg){
+                var tmp = count++;
+                var result = '<div id="infoAlert' + tmp + '" class="ext-center alert alert-info fade in">';
+                result += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+                result += '<strong>' + info + '</strong>' + msg;
+                result += '</div>';
+                $("#alertBox").append(result);
+                setTimeout(function () {
+                    var id = "#infoAlert" + tmp;
+                    $(id).alert("close");
+                }, 2000)
             }
         }
     });

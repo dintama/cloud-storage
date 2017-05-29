@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="/static/css/animate.css"/>
 <link rel="stylesheet" href="/static/css/style.css"/>
+<link href="/static/css/iconfont.css" rel="stylesheet" type="text/css"/>
+<link href="/static/css/fileUpload.css" rel="stylesheet" type="text/css">
 
 <script src="/static/js/modernizr-2.6.2.min.js"></script>
 <script src="/static/js/jquery.min.js"></script>
@@ -19,4 +21,5 @@
 <script src="/static/js/jquery.placeholder.min.js"></script>
 <script src="/static/js/jquery.waypoints.min.js"></script>
 <script src="/static/js/main.js"></script>
+<script src="/static/js/fileUpload.js"></script>
 <script src="/static/js/util/msgUtil.js"></script>
