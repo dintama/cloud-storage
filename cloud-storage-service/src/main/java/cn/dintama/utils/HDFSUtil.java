@@ -42,7 +42,7 @@ public abstract class HDFSUtil {
     }
 
     /*public static void main(String[] args) throws Exception {
-        deleteHdfs("/test");
+        deleteHdfs("/dingyi6680@qq.com");
     }*/
 
 }

@@ -360,6 +360,7 @@ var uploadTools = {
         }
 
         formData.append("filelSavePath",opt.filelSavePath);
+        formData.append("pathId", $("#pathId").val());
         if(uploadUrl!="#"&&uploadUrl!=""){
             uploadTools.disableFileUpload(opt);//禁用文件上传
             uploadTools.disableCleanFile(opt);//禁用清除文件

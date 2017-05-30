@@ -9,9 +9,11 @@
     <script src="/static/js/login/login.js"></script>
     <script src="/static/js/workbench/file.js"></script>
 </head>
-<body>
+<>
 
 <div id="alertBox" class="text-center" style="position: absolute; z-index: 5555; right:20px; top:20px;"></div>
+
+<input id="pathId" type="text" hidden="hidden" value="-1">
 
 <div class="navbar navbar-inverse" role="navigation" style="margin-bottom: 0px;">
     <div class="navbar-header">
@@ -19,7 +21,7 @@
     </div>
     <div class="pull-right" style="border-top-width: 20px; margin-top: 12px;margin-right: 20px;">
         <a href="/logout">
-            <span id="nick">Dintama</span>
+            <span id="nick">${nickname}</span>
             <i class="fa fa-sign-out"></i>
         </a>
     </div>

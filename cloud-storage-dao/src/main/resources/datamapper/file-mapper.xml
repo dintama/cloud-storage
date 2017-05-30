@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dintama.dao.FileDao">
+
+    <insert id="insertFile" parameterType="cn.dintama.entity.FileDo">
+        insert into file(user_id, parent_id, file_name, file_size, file_type, hdfs_path, last_update_time, is_delete) VALUES
+        (#{userId}, #{parentId}, #{fileName}, #{fileSize}, 1, #{hdfsPath}, UNIX_TIMESTAMP(), 1);
+    </insert>
+
+    <insert id="insertFile" parameterType="cn.dintama.entity.FileDo">
+        insert into file(user_id, parent_id, file_name, file_type, last_update_time, is_delete) VALUES
+        (#{userId}, #{parentId}, #{fileName}, 0, UNIX_TIMESTAMP(), 1);
+    </insert>
+
+</mapper>
