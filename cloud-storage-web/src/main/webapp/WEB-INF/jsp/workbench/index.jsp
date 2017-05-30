@@ -42,7 +42,7 @@
     <!--/.navbar-collapse -->
 
     <div class="templatemo-content-wrapper">
-        <div class="templatemo-content">
+        <div class="templatemo-content" style="height: 100%;">
 
             <h3>
                 CloudStorage
