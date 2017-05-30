@@ -6,6 +6,7 @@ import cn.dintama.entity.User;
 import cn.dintama.utils.HDFSUtil;
 import cn.dintama.utils.dto.UploadStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +33,9 @@ public class WorkbenchController {
     private FileDao fileDao;
 
     @RequestMapping(value = "/index")
-    public String index(){
+    public String index(HttpServletRequest request, Model model){
+        User user = (User)request.getSession().getAttribute("user");
+        model.addAttribute("nickname", user.getNickname());
         return "workbench/index";
     }
 

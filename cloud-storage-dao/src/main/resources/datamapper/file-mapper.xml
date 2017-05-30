@@ -7,7 +7,7 @@
         (#{userId}, #{parentId}, #{fileName}, #{fileSize}, 1, #{hdfsPath}, UNIX_TIMESTAMP(), 1);
     </insert>
 
-    <insert id="insertFile" parameterType="cn.dintama.entity.FileDo">
+    <insert id="insertDir" parameterType="cn.dintama.entity.FileDo">
         insert into file(user_id, parent_id, file_name, file_type, last_update_time, is_delete) VALUES
         (#{userId}, #{parentId}, #{fileName}, 0, UNIX_TIMESTAMP(), 1);
     </insert>
