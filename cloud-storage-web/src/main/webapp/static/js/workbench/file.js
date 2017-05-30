@@ -21,7 +21,27 @@ var file = function(){
 
         $("#createDir").on("click", function(){
             $("#createDirModal").modal("show");
-        })
+        });
+
+        $("#confirmCreateDir").on("click", function () {
+            $.ajax({
+                url: "file/createDir",
+                dataType: "json",
+                data: {
+                    parentId: $("#pathId").val(),
+                    fileName: $("#dirName").val()
+                },
+                type: "POST",
+                async:false,
+                success: function (res) {
+                    $.msgUtil.successMsg("创建成功！", "");
+                },
+                error: function () {
+                    $.msgUtil.errorMsg("创建失败！", "请刷新后重试。")
+                }
+            });
+            $("#createDirModal").modal("hidden");
+        });
     };
     
     return{

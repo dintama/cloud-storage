@@ -111,6 +111,8 @@ public class WorkbenchController {
     @RequestMapping(value = "/file/createDir")
     @ResponseBody
     public void createDir(HttpServletRequest request, FileDo fileDo){
+        User user = (User)request.getSession().getAttribute("user");
+        fileDo.setUserId(user.getId());
         fileDao.insertDir(fileDo);
     }
 
