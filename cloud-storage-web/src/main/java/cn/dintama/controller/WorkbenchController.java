@@ -1,16 +1,21 @@
 package cn.dintama.controller;
 
+import cn.dintama.entity.User;
+import cn.dintama.utils.HDFSUtil;
 import cn.dintama.utils.dto.UploadStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Dintama on 2017/5/27.
@@ -29,9 +34,18 @@ public class WorkbenchController {
     @ResponseBody
     public String fileUpload(@RequestParam(value="file",required= false) MultipartFile[] files,HttpServletRequest request) throws IOException {
 
-        long  startTime=System.currentTimeMillis();
-        String fileSavePath = request.getParameter("filelSavePath");
-        File pathFile = new File("D:\\"+fileSavePath);
+
+        String curTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        File pathFile = new File("D:\\CloudStorageFile\\"+curTime);
+
+        User user = (User)request.getSession().getAttribute("user");
+        if(user == null || user.getEmail() == null || user.getEmail() == ""){
+            return "failed";
+        }
+
+        String email = user.getEmail();
+
+        String hdfsPath = "/cloud-storage/" + email + "/";
 
         if(!pathFile.exists()&&!pathFile.isDirectory()){
             pathFile.mkdirs();
@@ -39,12 +53,25 @@ public class WorkbenchController {
         if(files!=null&&files.length>0){
             for(int i = 0;i<files.length;i++){
                 MultipartFile file = files[i];
-                file.transferTo(new File("D:\\"+fileSavePath+"\\"+file.getOriginalFilename()));
+
+                String tmpFileName = new BASE64Encoder().encode((email + file.getOriginalFilename()).getBytes());
+                String filePath = "D:\\CloudStorageFile\\"+curTime+"\\"+tmpFileName;
+
+                file.transferTo(new File(filePath));
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            HDFSUtil.updateHdfs(filePath, hdfsPath + file.getOriginalFilename());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
 
             }
         }
-        long  endTime=System.currentTimeMillis();
-        System.out.println("方法四的运行时间："+String.valueOf(endTime-startTime)+"ms");
         return "success";
     }
 
