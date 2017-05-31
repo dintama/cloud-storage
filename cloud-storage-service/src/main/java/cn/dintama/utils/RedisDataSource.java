@@ -36,4 +36,53 @@ public class RedisDataSource {
         });
     }
 
+    public boolean hSet(final String key, final String field,  final String value) {
+
+        return redisTemplate.execute(new RedisCallback<Boolean>() {
+
+            @Override
+            public Boolean doInRedis(RedisConnection connection)
+                    throws DataAccessException {
+                RedisSerializer<String> serializer = redisTemplate.getStringSerializer();
+                if (key == null) {
+                    return false;
+                }
+
+                byte[] redisKey = serializer.serialize(key);
+                byte[] redisField = serializer.serialize(field);
+                byte[] redisValue = serializer.serialize(value);
+
+                return connection.hSet(redisKey,redisField, redisValue);
+            }
+        });
+    }
+
+
+    public String hGet(final String key, final String field) {
+        try {
+            String value = redisTemplate.execute(new RedisCallback<String>() {
+                @Override
+                public String doInRedis(RedisConnection connection)
+                        throws DataAccessException {
+                    // TODO Auto-generated method stub
+
+                    RedisSerializer<String> serializer = redisTemplate
+                            .getStringSerializer();
+                    byte[] redisKey = serializer.serialize(key);
+                    byte[] redisField = serializer.serialize(field);
+                    return serializer.deserialize(connection.hGet(redisKey,
+                            redisField));
+                }
+            });
+            return value;
+        } catch (Exception e) {
+            e.printStackTrace();
+            // throw new ServiceException(
+            // "Fail to query keys from redis server. Caused By: "
+            // + e.getMessage());
+            logger.error("Fail to hget frm redis server, Caused by: ", e);
+            return null;
+        }
+    }
+
 }
