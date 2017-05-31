@@ -72,7 +72,6 @@ var file = function(){
                         result += '<th><div class="btn-group">' +
                             '<button class="btn btn-default" onclick="file.downloadFile('+ context.id +')">下载</button>' +
                             '<button class="btn btn-default" onclick="file.shareFile('+ context.id +')">分享</button>' +
-                            '<button class="btn btn-default" onclick="file.renameFile('+ context.id +')">重命名</button>' +
                             '<button class="btn btn-default" onclick="file.deleteFile('+ context.id +')">删除</button></div></th></tr>'
                     }
                 });
