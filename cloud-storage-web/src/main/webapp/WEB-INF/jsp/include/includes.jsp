@@ -16,6 +16,7 @@
 <script src="/static/js/modernizr-2.6.2.min.js"></script>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/common.js"></script>
 <script src="/static/js/Chart.min.js"></script>
 <script src="/static/js/templatemo_script.js"></script>
 <script src="/static/js/jquery.placeholder.min.js"></script>

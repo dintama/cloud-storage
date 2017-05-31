@@ -67,7 +67,7 @@ var file = function(){
         $("#pathId").val(parentId);
 
         $.ajax({
-            url: "file/listPage",
+            url: basePath + "api/file/listPage",
             dataType: "json",
             data: {
                 parentId: parentId
@@ -111,6 +111,78 @@ var file = function(){
         });
     };
 
+    var getShareIndexListPage = function (id) {
+
+        $.ajax({
+            url: basePath + "api/file/share/index",
+            dataType: "json",
+            data: {
+                id: id
+            },
+            type: "POST",
+            async:false,
+            success: function (res) {
+
+                var result = jsonToTableHtml(res);
+                $("#fileTable").empty();
+                $("#fileTable").append(result);
+            },
+            error: function () {
+                $.msgUtil.errorMsg("文件查询失败！", "请刷新后重试。")
+            }
+        });
+    };
+
+
+    var jsonToTableHtml = function (res) {
+        var result = '';
+
+        $.each(res, function (index, context) {
+            if(context.fileType === 0){ //文件夹
+                result += '<tr><th><div id="'+ context.id +'">' +
+                    '<a href="#" onclick="file.getFileListPageFromShare('+ context.id +')">' +
+                    '<i class="fa fa-folder">'+ context.fileName +'</i></a>' +
+                    '</div></th>';
+                result += '<th></th>' +
+                    '<th>'+ $.timeUtil.UnixToDate(context.lastUpdateTime, true, 8) +'</th>';
+                result += '<th></th></tr>';
+            }else{
+                result += '<tr><th><div id="'+ context.id +'">' +
+                    '<i class="fa fa-file">'+ context.fileName +'</i>' +
+                    '</div></th>';
+                result += '<th>'+ context.fileSize +'M</th>' +
+                    '<th>'+ $.timeUtil.UnixToDate(context.lastUpdateTime, true, 8) +'</th>';
+                result += '<th><div class="btn-group">' +
+                    '<button class="btn btn-default" onclick="file.downloadFile('+ context.id +')">下载</button>' +
+                    '<button class="btn btn-default" onclick="file.collectionFile('+ context.id +')">收藏</button></div></th></tr>'
+            }
+        });
+        return result;
+    };
+
+    var getShareIndexListChildPage = function (parentId) {
+        $("#pathId").val(parentId);
+
+        $.ajax({
+            url: basePath + "api/file/listPage",
+            dataType: "json",
+            data: {
+                parentId: parentId
+            },
+            type: "POST",
+            async:false,
+            success: function (res) {
+
+                var result = jsonToTableHtml(res);
+                $("#fileTable").empty();
+                $("#fileTable").append(result);
+            },
+            error: function () {
+                $.msgUtil.errorMsg("文件查询失败！", "请刷新后重试。")
+            }
+        });
+    };
+
     return{
         init : function () {
             buttonInit();
@@ -126,7 +198,7 @@ var file = function(){
         },
         shareFile: function(fileId){
             $.ajax({
-                url: "file/share",
+                url: basePath + "file/share",
                 dataType: "text",
                 data: {
                     id: fileId
@@ -167,7 +239,7 @@ var file = function(){
         },
         downloadFile: function (fileId) {
             $.ajax({
-                url: "file/download",
+                url: basePath +  "api/file/download",
                 dataType: "text",
                 data: {
                     id: fileId
@@ -189,7 +261,17 @@ var file = function(){
                 }
             });
             $("#downloadFileModal").modal("show");
+        },
+        collectionFile: function () {
+            alert("收藏文件");
+        },
+        getShareIndex : function (id) {
+            getShareIndexListPage(id);
+        },
+        getFileListPageFromShare: function(parentId){
+            getShareIndexListChildPage(parentId);
         }
+
     }
     
 }();

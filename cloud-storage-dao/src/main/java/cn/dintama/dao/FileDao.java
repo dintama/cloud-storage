@@ -24,5 +24,4 @@ public interface FileDao {
     FileDo selectFileById(FileDo file);
 
 
-
 }

@@ -6,6 +6,7 @@ import cn.dintama.entity.User;
 import cn.dintama.utils.HDFSUtil;
 import cn.dintama.utils.RedisDataSource;
 import cn.dintama.utils.dto.UploadStatus;
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +24,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.rmi.MarshalledObject;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -128,12 +131,23 @@ public class WorkbenchController {
         fileDao.insertDir(fileDo);
     }
 
-    @RequestMapping(value = "/file/listPage")
+    @RequestMapping(value = "/api/file/listPage")
     @ResponseBody
     public List<FileDo> listPage(HttpServletRequest request, FileDo fileDo){
         User user = (User)request.getSession().getAttribute("user");
-        fileDo.setUserId(user.getId());
+        if(user != null) {
+            fileDo.setUserId(user.getId());
+        }
         List<FileDo> fileDos = fileDao.selectAllFileListPage(fileDo);
+        return fileDos;
+    }
+
+    @RequestMapping(value = "/api/file/share/index")
+    @ResponseBody
+    public List<FileDo> apiFileListPage(HttpServletRequest request, FileDo file){
+        FileDo fileDo = fileDao.selectFileById(file);
+        List<FileDo> fileDos = new ArrayList<>();
+        fileDos.add(fileDo);
         return fileDos;
     }
 
@@ -149,7 +163,7 @@ public class WorkbenchController {
         fileDao.updateFileNameById(file);
     }
 
-    @RequestMapping("file/download")
+    @RequestMapping("/api/file/download")
     @ResponseBody
     public String downloadFile(HttpServletRequest request, FileDo file) throws UnsupportedEncodingException {
         FileDo fileDo = fileDao.selectFileById(file);
@@ -169,7 +183,9 @@ public class WorkbenchController {
     @RequestMapping("/api/share/{uuid}")
     public String fileSharePage(HttpServletRequest request, Model model, @PathVariable String uuid){
         model.addAttribute("uuid", uuid);
-        return "index";
+        String thisId = redisDataSource.hGet(REDIS_KEY, uuid);
+        model.addAttribute("thisId", thisId);
+        return "workbench/share";
     }
 
     /*public static void main(String[] args) throws UnsupportedEncodingException {
