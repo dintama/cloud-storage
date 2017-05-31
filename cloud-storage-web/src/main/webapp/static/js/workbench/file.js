@@ -262,11 +262,50 @@ var file = function(){
             });
             $("#downloadFileModal").modal("show");
         },
-        collectionFile: function () {
-            alert("收藏文件");
+        collectionFile: function (id) {
+            $.ajax({
+                url: basePath + "api/file/collection",
+                dataType: "text",
+                data: {
+                    id: id
+                },
+                type: "POST",
+                sync: "false",
+                success: function (res) {
+                    if(res === "false"){
+                        $("#loginModal").modal("show");
+                        return;
+                    }else{
+                        $.msgUtil.successMsg("收藏成功!", "")
+                    }
+                },
+                error: function(){
+                    $.msgUtil.errorMsg("收藏失败！", "请刷新后再试。");
+                }
+            });
         },
         getShareIndex : function (id) {
             getShareIndexListPage(id);
+            $("#login").on("click", function () {
+                $.ajax({
+                    url: basePath +  "validate/login",
+                    dataType: "text",
+                    data: {
+                        email: $("#email").val(),
+                        password: $("#password").val()
+                    },
+                    async:false,
+                    type: "POST",
+                    success: function (res) {
+                        if (res === "true") {
+                            $.msgUtil.successMsg("登陆成功！", "");
+                            $("#loginModal").modal("hide");
+                        } else {
+                            $.msgUtil.errorMsg("登陆失败", "账号或密码错误");
+                        }
+                    }
+                });
+            })
         },
         getFileListPageFromShare: function(parentId){
             getShareIndexListChildPage(parentId);

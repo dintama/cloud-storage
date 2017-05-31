@@ -89,11 +89,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">新建文件夹</h4>
+                <h4 class="modal-title">登录</h4>
             </div>
             <div class="modal-body">
                 <div class="center-block">
-                    邮箱:&nbsp;<input type="text" id="email" value="">
+                    邮箱:&nbsp;<input type="text" id="email" value=""><br/>
                     密码:&nbsp;<input type="password" id="password" value="">
                 </div>
             </div>

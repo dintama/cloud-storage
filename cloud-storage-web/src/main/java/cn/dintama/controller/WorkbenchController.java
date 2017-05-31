@@ -188,6 +188,20 @@ public class WorkbenchController {
         return "workbench/share";
     }
 
+    @RequestMapping("/api/file/collection")
+    @ResponseBody
+    public String fileCollection(HttpServletRequest request, FileDo file){
+        User user = (User) request.getSession().getAttribute("user");
+        if(user == null){
+            return "false";
+        }
+        FileDo fileDo = fileDao.selectFileById(file);
+        fileDo.setUserId(user.getId());
+        fileDo.setParentId(-1);
+        fileDao.insertFile(fileDo);
+        return "true";
+    }
+
     /*public static void main(String[] args) throws UnsupportedEncodingException {
         String decode = URLDecoder.decode("/cloud-storage/dingyi6680@qq.com/%E6%94%BE%E5%BC%80%E9%82%A3%E4%B8%AA%E5%A5%B3%E5%B7%AB%20www.80txt.com(all).txt", "UTF-8");
         System.out.println(decode);
