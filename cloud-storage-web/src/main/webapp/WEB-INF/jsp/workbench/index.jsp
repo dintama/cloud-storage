@@ -9,7 +9,6 @@
     <script src="/static/js/login/login.js"></script>
     <script src="/static/js/workbench/file.js"></script>
 </head>
-<>
 
 <div id="alertBox" class="text-center" style="position: absolute; z-index: 5555; right:20px; top:20px;"></div>
 

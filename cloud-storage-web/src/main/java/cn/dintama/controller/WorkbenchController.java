@@ -47,7 +47,7 @@ public class WorkbenchController {
         DecimalFormat df = new DecimalFormat("######0.00");
 
         String curTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        File pathFile = new File("D:\\CloudStorageFile\\"+curTime);
+        File pathFile = new File("/tmp/CloudStorageFile/"+curTime);
 
         Integer parentId = Integer.parseInt(request.getParameter("pathId"));
 
@@ -69,7 +69,7 @@ public class WorkbenchController {
                 MultipartFile file = files[i];
 
                 String tmpFileName = new BASE64Encoder().encode((email + file.getOriginalFilename()).getBytes());
-                String filePath = "D:\\CloudStorageFile\\"+curTime+"\\"+tmpFileName;
+                String filePath = "/tmp/CloudStorageFile/"+curTime+"/"+tmpFileName;
 
                 file.transferTo(new File(filePath));
 
