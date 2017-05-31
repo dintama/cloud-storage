@@ -18,25 +18,28 @@ var file = function(){
         $("#confirmCreateDir").on("click", function () {
             $.ajax({
                 url: "file/createDir",
-                dataType: "json",
                 data: {
                     parentId: $("#pathId").val(),
                     fileName: $("#dirName").val()
                 },
                 type: "POST",
                 async:false,
-                success: function (res) {
+                success: function () {
                     $.msgUtil.successMsg("创建文件夹成功！", "");
                 },
                 error: function () {
                     $.msgUtil.errorMsg("创建失败！", "请刷新后重试。")
                 }
             });
-            $("#createDirModal").modal("hidden");
+            $("#createDirModal").modal("hide");
+            getFileList($("#pathId").val());
         });
     };
 
     var getFileList = function (parentId) {
+
+        $("#pathId").val(parentId);
+
         $.ajax({
             url: "file/listPage",
             dataType: "json",
@@ -55,7 +58,7 @@ var file = function(){
                             '<i class="fa fa-folder">'+ context.fileName +'</i></a>' +
                             '</div></th>';
                         result += '<th></th>' +
-                            '<th>'+ context.lastUpdateTime +'</th>';
+                            '<th>'+ $.timeUtil.UnixToDate(context.lastUpdateTime, true, 8) +'</th>';
                         result += '<th><div class="btn-group">' +
                             '<button class="btn btn-default" onclick="file.shareFile('+ context.id +')">分享</button>' +
                             '<button class="btn btn-default" onclick="file.renameFile('+ context.id +')">重命名</button>' +
@@ -65,7 +68,7 @@ var file = function(){
                             '<i class="fa fa-file">'+ context.fileName +'</i>' +
                             '</div></th>';
                         result += '<th>'+ context.fileSize +'M</th>' +
-                            '<th>'+ context.lastUpdateTime +'</th>';
+                            '<th>'+ $.timeUtil.UnixToDate(context.lastUpdateTime, true, 8) +'</th>';
                         result += '<th><div class="btn-group">' +
                             '<button class="btn btn-default" onclick="file.downloadFile('+ context.id +')">下载</button>' +
                             '<button class="btn btn-default" onclick="file.shareFile('+ context.id +')">分享</button>' +

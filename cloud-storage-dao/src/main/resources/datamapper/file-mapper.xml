@@ -13,7 +13,7 @@
     </insert>
 
     <select id="selectAllFileListPage" parameterType="cn.dintama.entity.FileDo" resultType="cn.dintama.entity.FileDo">
-        select * from file where user_id = #{userId} and parent_id = #{parentId}
+        select * from file where user_id = #{userId} and parent_id = #{parentId} and is_delete = 1
     </select>
 
 </mapper>
