@@ -29,11 +29,11 @@
         <h2>用户登录</h2>
         <div class="form-group">
           <label for="username" class="sr-only">邮箱</label>
-          <input type="text" class="form-control" id="username" placeholder="邮箱" autocomplete="off">
+          <input type="text" class="form-control" id="username" placeholder="邮箱" autocomplete="off" value="dingyi6680@qq.com">
         </div>
         <div class="form-group">
           <label for="password" class="sr-only">密码</label>
-          <input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off">
+          <input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off" value="123456">
         </div>
         <div class="form-group">
           <p>没有账号? <a href="/signUp">注册一个</a></p>

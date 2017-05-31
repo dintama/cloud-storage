@@ -29,7 +29,7 @@
 <div class="template-page-wrapper">
     <div class="navbar-collapse collapse templatemo-sidebar" style="padding-left: 0px;margin-top: 0px; width: 230px;padding-right: 0px;">
         <ul class="templatemo-sidebar-menu">
-            <li class="active"><a href="#"><i class="fa fa-book"></i>全部文件
+            <li class="active" onclick="file.init()"><a href="#"><i class="fa fa-book"></i>全部文件
                 <div class="pull-right"></div>
             </a></li>
             <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图片</a></li>
@@ -66,7 +66,7 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th><input type="checkbox">&nbsp;文件名</th>
+                                <th>文件名</th>
                                 <th>大小</th>
                                 <th>修改日期</th>
                                 <th>操作</th>
@@ -74,23 +74,10 @@
                             </thead>
                             <tbody id="fileTable">
                             <tr>
-                                <th>
-                                    <input type='checkbox'>
-                                    <a href="#" onclick=""><i class="fa fa-folder">haha</i></a>
-                                </th>
-                                <th>
-                                    3M
-                                </th>
-                                <th>
-                                    2017年05月31日14:37:41
-                                </th>
-                                <th>
-                                    <div class="btn-group">
-                                        <button class="btn btn-default">分享</button>
-                                        <button class="btn btn-default">重命名</button>
-                                        <button class="btn btn-default">删除</button>
-                                    </div>
-                                </th>
+                                <th><a href="#" onclick=""><i class="fa fa-folder">haha</i></a></th>
+                                <th>3M</th>
+                                <th>2017年05月31日14:37:41</th>
+                                <th><div class="btn-group"><button class="btn btn-default">分享</button><button class="btn btn-default">重命名</button><button class="btn btn-default">删除</button></div></th>
                             </tr>
                             </tbody>
                         </table>
