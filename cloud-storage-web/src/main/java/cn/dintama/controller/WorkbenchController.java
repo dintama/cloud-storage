@@ -4,9 +4,11 @@ import cn.dintama.dao.FileDao;
 import cn.dintama.entity.FileDo;
 import cn.dintama.entity.User;
 import cn.dintama.utils.HDFSUtil;
+import cn.dintama.utils.RedisDataSource;
 import cn.dintama.utils.dto.UploadStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +27,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Dintama on 2017/5/27.
@@ -35,6 +38,11 @@ public class WorkbenchController {
 
     @Resource
     private FileDao fileDao;
+
+    @Resource
+    private RedisDataSource redisDataSource;
+
+    private static final String REDIS_KEY = "share_file";
 
     @RequestMapping(value = "/index")
     public String index(HttpServletRequest request, Model model){
@@ -147,6 +155,21 @@ public class WorkbenchController {
         FileDo fileDo = fileDao.selectFileById(file);
         String result = "http://www.hope6537.com:50075/webhdfs/v1"+ fileDo.getHdfsPath() +"?op=OPEN&namenoderpcaddress=www.hope6537.com:9000&offset=0";
         return result;
+    }
+
+    @RequestMapping("file/share")
+    @ResponseBody
+    public String shareFile(HttpServletRequest request, FileDo file){
+        UUID uuid = UUID.randomUUID();
+        String url = "http://dintama.cloudStorage.com/api/share/"+uuid;
+        redisDataSource.hSet(REDIS_KEY, uuid.toString(), file.getId().toString());
+        return url;
+    }
+
+    @RequestMapping("/api/share/{uuid}")
+    public String fileSharePage(HttpServletRequest request, Model model, @PathVariable String uuid){
+        model.addAttribute("uuid", uuid);
+        return "index";
     }
 
     /*public static void main(String[] args) throws UnsupportedEncodingException {

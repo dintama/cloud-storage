@@ -155,7 +155,7 @@
 </div>
 
 
-<!-- 模态框 重命名文件夹 -->
+<!-- 模态框 下载文件 -->
 <div class="modal fade" id="downloadFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width:350px">
         <div class="modal-content">
@@ -165,7 +165,7 @@
             </div>
             <div class="modal-body">
                 <div class="center-block">
-                    <h4>文件下载链接生成完成:&nbsp;&nbsp;&nbsp;</h4>
+                    <h6>文件下载链接生成完成:&nbsp;&nbsp;&nbsp;</h6>
                     <div>
                         <a id="downloadUrl" href=""><button class="btn btn-info">下载文件</button></a>
                         <a><button id="shareUrl" data-clipboard-text="" class="btn btn-default">复制链接</button></a>
@@ -176,6 +176,27 @@
     </div><!-- /.modal -->
 </div>
 
+
+<!-- 模态框 分享文件 -->
+<div class="modal fade" id="shareFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:350px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">创建分享</h4>
+            </div>
+            <div class="modal-body">
+                <div class="center-block">
+                    <h6>分享链接生成完成:&nbsp;&nbsp;&nbsp;</h6>
+                    <div class="input-group">
+                        <input id="uuidUrl" type="text" disabled="disabled" style="width: 300px"/> <br/>
+                        <button id="shareUuidUrl" data-clipboard-text="" class="btn btn-default">复制链接</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
 </body>
 </html>

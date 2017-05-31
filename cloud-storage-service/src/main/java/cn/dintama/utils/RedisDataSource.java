@@ -80,7 +80,6 @@ public class RedisDataSource {
             // throw new ServiceException(
             // "Fail to query keys from redis server. Caused By: "
             // + e.getMessage());
-            logger.error("Fail to hget frm redis server, Caused by: ", e);
             return null;
         }
     }

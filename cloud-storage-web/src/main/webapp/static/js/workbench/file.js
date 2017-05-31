@@ -125,7 +125,28 @@ var file = function(){
             $("#renameDirModal").modal("show");
         },
         shareFile: function(fileId){
-            alert("分享单个文件");
+            $.ajax({
+                url: "file/share",
+                dataType: "text",
+                data: {
+                    id: fileId
+                },
+                type: "POST",
+                success: function (res) {
+                    $("#uuidUrl").val(res);
+                    var clip = new ZeroClipboard(document.getElementById("shareUuidUrl"));
+                    clip.setText($("#uuidUrl").val());
+                    clip.on("ready", function (readyEvent) {
+                        clip.on("aftercopy", function(event){
+                            $.msgUtil.successMsg("复制成功！", "");
+                        })
+                    })
+                },
+                error: function(){
+                    $.msgUtil.errorMsg("分享链接生成失败！", "请刷新后再试");
+                }
+            });
+            $("#shareFileModal").modal("show");
         },
         deleteFile: function (fileId) {
             $.ajax({
