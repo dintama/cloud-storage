@@ -19,6 +19,8 @@ public interface FileDao {
 
     void deleteFileById(FileDo file);
 
+    void updateFileNameById(FileDo file);
+
 
 
 }

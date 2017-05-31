@@ -132,4 +132,10 @@ public class WorkbenchController {
         fileDao.deleteFileById(fileDo);
     }
 
+    @RequestMapping("file/renameDir")
+    @ResponseBody
+    public void renameDir(HttpServletRequest request, FileDo file){
+        fileDao.updateFileNameById(file);
+    }
+
 }

@@ -34,6 +34,25 @@ var file = function(){
             $("#createDirModal").modal("hide");
             getFileList($("#pathId").val());
         });
+        $("#confirmRenameDir").on("click", function () {
+            $.ajax({
+                url: "file/renameDir",
+                data: {
+                    id: $("#reDirId").val(),
+                    fileName: $("#reDirName").val()
+                },
+                type: "POST",
+                async:false,
+                success: function () {
+                    $.msgUtil.successMsg("重命名文件夹成功！", "");
+                },
+                error: function () {
+                    $.msgUtil.errorMsg("重命名失败！", "请刷新后重试。")
+                }
+            });
+            $("#renameDirModal").modal("hide");
+            getFileList($("#pathId").val());
+        });
     };
 
     var getFileList = function (parentId) {
@@ -61,7 +80,7 @@ var file = function(){
                             '<th>'+ $.timeUtil.UnixToDate(context.lastUpdateTime, true, 8) +'</th>';
                         result += '<th><div class="btn-group">' +
                             '<button class="btn btn-default" onclick="file.shareFile('+ context.id +')">分享</button>' +
-                            '<button class="btn btn-default" onclick="file.renameFile('+ context.id +')">重命名</button>' +
+                            '<button class="btn btn-default" onclick="file.renameFile('+ context.id +', \''+ context.fileName +'\')">重命名</button>' +
                             '<button class="btn btn-default" onclick="file.deleteFile('+ context.id +')">删除</button></div></th></tr>';
                     }else{
                         result += '<tr><th><div id="'+ context.id +'">' +
@@ -94,8 +113,10 @@ var file = function(){
         getFileListPage : function (parentId) {
             getFileList(parentId);
         },
-        renameFile : function (fileId) {
-            alert("重命名文件");
+        renameFile : function (fileId, fileName) {
+            $("#reDirName").val(fileName);
+            $("#reDirId").val(fileId);
+            $("#renameDirModal").modal("show");
         },
         shareFile: function(fileId){
             alert("分享单个文件");

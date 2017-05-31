@@ -20,4 +20,8 @@
         update file set is_delete = 0 where id = #{id}
     </update>
 
+    <update id="updateFileNameById" parameterType="cn.dintama.entity.FileDo">
+        update file set file_name = #{fileName} where id = #{id}
+    </update>
+
 </mapper>

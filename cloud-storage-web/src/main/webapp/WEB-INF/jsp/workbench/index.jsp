@@ -131,6 +131,29 @@
     </div><!-- /.modal -->
 </div>
 
+<!-- 模态框 重命名文件夹 -->
+<div class="modal fade" id="renameDirModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:350px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">重命名文件夹</h4>
+            </div>
+            <div class="modal-body">
+                <div class="center-block">
+                    文件夹名称:&nbsp;&nbsp;&nbsp;
+                    <input type="text" id="reDirName" value="">
+                    <input type="text" id="reDirId" hidden="hidden"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="confirmRenameDir" type="button" class="btn btn-info" >确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 
 </body>
 </html>
