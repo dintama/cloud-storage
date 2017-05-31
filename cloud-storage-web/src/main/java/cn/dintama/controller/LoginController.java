@@ -4,17 +4,14 @@ package cn.dintama.controller;
 import cn.dintama.dao.UserDao;
 import cn.dintama.entity.User;
 import cn.dintama.service.UserService;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import cn.dintama.utils.RedisDataSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * Created by Dintama on 2017/5/25.
@@ -28,9 +25,13 @@ public class LoginController {
     @Resource
     private UserDao userDao;
 
+    @Resource
+    private RedisDataSource redisDataSource;
+
     @RequestMapping(value = "/checkHealth")
     @ResponseBody
     public String checkHealth(){
+        redisDataSource.set("test", "test");
         return "ok";
     }
 
