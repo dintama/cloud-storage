@@ -24,3 +24,4 @@
 <script src="/static/js/fileUpload.js"></script>
 <script src="/static/js/util/msgUtil.js"></script>
 <script src="/static/js/util/timeUtil.js"></script>
+<script src="/static/js/ZeroClipboard.min.js"></script>

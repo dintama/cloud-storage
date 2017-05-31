@@ -155,6 +155,28 @@
 </div>
 
 
+<!-- 模态框 重命名文件夹 -->
+<div class="modal fade" id="downloadFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:350px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">下载文件</h4>
+            </div>
+            <div class="modal-body">
+                <div class="center-block">
+                    <h4>文件下载链接生成完成:&nbsp;&nbsp;&nbsp;</h4>
+                    <div>
+                        <a id="downloadUrl" href=""><button class="btn btn-info">下载文件</button></a>
+                        <a><button id="shareUrl" data-clipboard-text="" class="btn btn-default">复制链接</button></a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
 </body>
 </html>
 

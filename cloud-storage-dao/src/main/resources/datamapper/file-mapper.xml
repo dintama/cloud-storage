@@ -24,4 +24,8 @@
         update file set file_name = #{fileName} where id = #{id}
     </update>
 
+    <select id="selectFileById" parameterType="cn.dintama.entity.FileDo" resultType="cn.dintama.entity.FileDo">
+        select * from file where id = #{id}
+    </select>
+
 </mapper>

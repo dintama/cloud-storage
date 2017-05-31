@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -137,5 +140,18 @@ public class WorkbenchController {
     public void renameDir(HttpServletRequest request, FileDo file){
         fileDao.updateFileNameById(file);
     }
+
+    @RequestMapping("file/download")
+    @ResponseBody
+    public String downloadFile(HttpServletRequest request, FileDo file) throws UnsupportedEncodingException {
+        FileDo fileDo = fileDao.selectFileById(file);
+        String result = "http://www.hope6537.com:50075/webhdfs/v1"+ fileDo.getHdfsPath() +"?op=OPEN&namenoderpcaddress=www.hope6537.com:9000&offset=0";
+        return result;
+    }
+
+    /*public static void main(String[] args) throws UnsupportedEncodingException {
+        String decode = URLDecoder.decode("/cloud-storage/dingyi6680@qq.com/%E6%94%BE%E5%BC%80%E9%82%A3%E4%B8%AA%E5%A5%B3%E5%B7%AB%20www.80txt.com(all).txt", "UTF-8");
+        System.out.println(decode);
+    }*/
 
 }

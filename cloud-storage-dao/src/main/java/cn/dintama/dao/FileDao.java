@@ -21,6 +21,8 @@ public interface FileDao {
 
     void updateFileNameById(FileDo file);
 
+    FileDo selectFileById(FileDo file);
+
 
 
 }

@@ -53,6 +53,9 @@ var file = function(){
             $("#renameDirModal").modal("hide");
             getFileList($("#pathId").val());
         });
+        // $("#shareUrl").on("click",function(){
+        //     var clip = new ZeroClipboard(document.getElementById("#downloadUrl"));
+        // })
     };
 
     var getFileList = function (parentId) {
@@ -104,7 +107,6 @@ var file = function(){
         });
     };
 
-
     return{
         init : function () {
             buttonInit();
@@ -139,7 +141,29 @@ var file = function(){
             getFileList($("#pathId").val());
         },
         downloadFile: function (fileId) {
-            alert("下载单个文件");
+            $.ajax({
+                url: "file/download",
+                dataType: "text",
+                data: {
+                    id: fileId
+                },
+                type: "POST",
+                success: function (res) {
+                    $("#downloadUrl").attr("href", res);
+                    $("#shareUrl").attr("data-clipboard-text", res);
+                    var clip = new ZeroClipboard(document.getElementById("shareUrl"));
+                    clip.setText($("#downloadUrl").attr("href"));
+                    clip.on("ready", function (readyEvent) {
+                        clip.on("aftercopy", function(event){
+                            $.msgUtil.successMsg("复制成功！", "");
+                        })
+                    })
+                },
+                error: function(){
+                    $.msgUtil.errorMsg("下载链接生成失败！", "请刷新后再试");
+                }
+            });
+            $("#downloadFileModal").modal("show");
         }
     }
     
