@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Dintama on 2017/5/30.
@@ -25,6 +26,15 @@ public class FileTest extends SpringTestHelper{
         fileDo.setFileSize(2.0);
         fileDo.setFileType(1);
         fileDao.insertFile(fileDo);
+    }
+
+    @Test
+    public void testSelectFileListPage(){
+        FileDo fileDo = new FileDo();
+        fileDo.setUserId(1);
+        fileDo.setParentId(-1);
+        List<FileDo> fileDos = fileDao.selectAllFileListPage(fileDo);
+        System.out.println(fileDos.size());
     }
 
 }

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Dintama on 2017/5/27.
@@ -114,6 +115,15 @@ public class WorkbenchController {
         User user = (User)request.getSession().getAttribute("user");
         fileDo.setUserId(user.getId());
         fileDao.insertDir(fileDo);
+    }
+
+    @RequestMapping(value = "/file/listPage")
+    @ResponseBody
+    public List<FileDo> listPage(HttpServletRequest request, FileDo fileDo){
+        User user = (User)request.getSession().getAttribute("user");
+        fileDo.setUserId(user.getId());
+        List<FileDo> fileDos = fileDao.selectAllFileListPage(fileDo);
+        return fileDos;
     }
 
 }

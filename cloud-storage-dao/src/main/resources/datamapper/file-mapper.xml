@@ -12,7 +12,7 @@
         (#{userId}, #{parentId}, #{fileName}, 0, UNIX_TIMESTAMP(), 1);
     </insert>
 
-    <select id="selectAllFileListPage" parameterMap="cn.dintama.entity.FileDo">
+    <select id="selectAllFileListPage" parameterType="cn.dintama.entity.FileDo" resultType="cn.dintama.entity.FileDo">
         select * from file where user_id = #{userId} and parent_id = #{parentId}
     </select>
 

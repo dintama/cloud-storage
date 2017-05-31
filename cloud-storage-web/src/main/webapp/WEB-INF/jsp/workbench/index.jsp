@@ -72,7 +72,26 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody id="orderTable">
+                            <tbody id="fileTable">
+                            <tr>
+                                <th>
+                                    <input type='checkbox'>
+                                    <a href="#" onclick=""><i class="fa fa-folder">haha</i></a>
+                                </th>
+                                <th>
+                                    3M
+                                </th>
+                                <th>
+                                    2017年05月31日14:37:41
+                                </th>
+                                <th>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default">分享</button>
+                                        <button class="btn btn-default">重命名</button>
+                                        <button class="btn btn-default">删除</button>
+                                    </div>
+                                </th>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

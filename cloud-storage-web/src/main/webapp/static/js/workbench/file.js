@@ -2,17 +2,9 @@ var file = function(){
 
     var buttonInit = function () {
         $("#uploadFile").on("click", function(){
-
-            /*$("#myModalLabel").empty();
-            $("#myModalLabel").append("ÉÏ´«ÎÄ¼ş");
-
-            $("#myModalBody").empty();
-            $("#myModalBody").append('<div id="fileUploadContent" class="fileUploadContent"></div>');*/
-
             $("#fileUpload").modal();
             $("#fileUploadContent").initUpload({
                 "uploadUrl": "/file/fileUpload",
-                //ÉÏ´«ÎÄ¼şĞÅÏ¢µØÖ·
                 //"progressUrl": "/file/getStatus",
                 "filelSavePath": "test"
             });
@@ -34,19 +26,38 @@ var file = function(){
                 type: "POST",
                 async:false,
                 success: function (res) {
-                    $.msgUtil.successMsg("´´½¨³É¹¦£¡", "");
+                    $.msgUtil.successMsg("åˆ›å»ºæ–‡ä»¶å¤¹æˆåŠŸï¼", "");
                 },
                 error: function () {
-                    $.msgUtil.errorMsg("´´½¨Ê§°Ü£¡", "ÇëË¢ĞÂºóÖØÊÔ¡£")
+                    $.msgUtil.errorMsg("åˆ›å»ºå¤±è´¥ï¼", "è¯·åˆ·æ–°åé‡è¯•ã€‚")
                 }
             });
             $("#createDirModal").modal("hidden");
+        });
+    };
+
+    var getFileList = function (parentId) {
+        $.ajax({
+            url: "file/listPage",
+            dataType: "json",
+            data: {
+                parentId: parentId
+            },
+            type: "POST",
+            async:false,
+            success: function (res) {
+                alert("success");
+            },
+            error: function () {
+                $.msgUtil.errorMsg("æ–‡ä»¶æŸ¥è¯¢å¤±è´¥ï¼", "è¯·åˆ·æ–°åé‡è¯•ã€‚")
+            }
         });
     };
     
     return{
         init : function () {
             buttonInit();
+            getFileList(-1);
         }
     }
     
