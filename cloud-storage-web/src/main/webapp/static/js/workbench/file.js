@@ -16,6 +16,7 @@ var file = function(){
         });
 
         $("#confirmCreateDir").on("click", function () {
+            $("#confirmCreateDir").attr("disabled", "disabled");
             $.ajax({
                 url: "file/createDir",
                 data: {
@@ -32,9 +33,11 @@ var file = function(){
                 }
             });
             $("#createDirModal").modal("hide");
+            $("#confirmCreateDir").removeAttr("disabled");
             getFileList($("#pathId").val());
         });
         $("#confirmRenameDir").on("click", function () {
+            $("#confirmRenameDir").attr("disabled", "disabled");
             $.ajax({
                 url: "file/renameDir",
                 data: {
@@ -51,6 +54,7 @@ var file = function(){
                 }
             });
             $("#renameDirModal").modal("hide");
+            $("#confirmRenameDir").removeAttr("disabled");
             getFileList($("#pathId").val());
         });
         // $("#shareUrl").on("click",function(){
