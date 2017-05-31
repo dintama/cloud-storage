@@ -126,4 +126,10 @@ public class WorkbenchController {
         return fileDos;
     }
 
+    @RequestMapping("/file/delete")
+    @ResponseBody
+    public void deleteFile(HttpServletRequest request, FileDo fileDo){
+        fileDao.deleteFileById(fileDo);
+    }
+
 }

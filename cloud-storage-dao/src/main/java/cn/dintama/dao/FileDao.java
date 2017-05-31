@@ -17,6 +17,8 @@ public interface FileDao {
 
     List<FileDo> selectAllFileListPage(FileDo file);
 
+    void deleteFileById(FileDo file);
+
 
 
 }

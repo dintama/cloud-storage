@@ -102,7 +102,21 @@ var file = function(){
             alert("分享单个文件");
         },
         deleteFile: function (fileId) {
-            alert("删除单个文件");
+            $.ajax({
+                url: "file/delete",
+                data: {
+                    id: fileId
+                },
+                async:false,
+                type: "POST",
+                success: function (res) {
+                    $.msgUtil.successMsg("删除成功！", "");
+                },
+                error: function(){
+                    $.msgUtil.errorMsg("删除失败！", "请刷新后再试");
+                }
+            });
+            getFileList($("#pathId").val());
         },
         downloadFile: function (fileId) {
             alert("下载单个文件");

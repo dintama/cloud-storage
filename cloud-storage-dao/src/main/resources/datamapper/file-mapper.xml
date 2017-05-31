@@ -16,4 +16,8 @@
         select * from file where user_id = #{userId} and parent_id = #{parentId} and is_delete = 1
     </select>
 
+    <update id="deleteFileById" parameterType="cn.dintama.entity.FileDo">
+        update file set is_delete = 0 where id = #{id}
+    </update>
+
 </mapper>
